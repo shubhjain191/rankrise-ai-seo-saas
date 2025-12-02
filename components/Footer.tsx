@@ -10,6 +10,7 @@ export default function Footer() {
         <div className="flex flex-col items-center space-y-12">
           {/* Logo */}
           <div className="flex items-center space-x-2">
+            <img className="w-auto h-8 mr-2" src="/convex.svg" alt="RankRise Logo" />
             <span className="text-2xl font-bold font-pj text-white">
               RankRise
             </span>

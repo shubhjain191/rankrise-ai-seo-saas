@@ -16,6 +16,7 @@ export default function Header() {
               title=""
               className="flex rounded outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
             >
+              <img className="w-auto h-8 mr-2" src="/convex.svg" alt="RankRise Logo" />
               <span className="text-xl font-bold text-gray-900">RankRise</span>
             </Link>
           </div>
