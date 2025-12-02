@@ -23,96 +23,18 @@ import {
   Globe,
 } from "lucide-react";
 import Link from "next/link";
+import Header from "@/components/Header";
+import PricingSection from "@/components/PricingSection";
+import Testimonials from "@/components/Testimonials";
+import CTASection from "@/components/CTASection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="relative py-4 md:py-6">
-        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <div className="shrink-0">
-              <Link
-                href="#"
-                title=""
-                className="flex rounded outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
-              >
-                <span className="text-xl font-bold text-gray-900">
-                  RankRise
-                </span>
-              </Link>
-            </div>
+      <Header />
 
-            <div className="flex lg:hidden">
-              <button type="button" className="text-gray-900">
-                <svg
-                  className="w-7 h-7"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.5"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  ></path>
-                </svg>
-              </button>
-            </div>
-
-            <div className="hidden lg:flex lg:ml-16 lg:items-center lg:justify-center lg:space-x-10">
-              <div className="flex items-center space-x-12">
-                <Link
-                  href="#"
-                  title=""
-                  className="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
-                >
-                  {" "}
-                  Features{" "}
-                </Link>
-
-                <Link
-                  href="/pricing"
-                  title=""
-                  className="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
-                >
-                  {" "}
-                  Pricing{" "}
-                </Link>
-              </div>
-
-              <div className="w-px h-5 bg-gray-300"></div>
-
-              <Unauthenticated>
-                <SignInButton mode="modal" forceRedirectUrl="/dashboard">
-                  <Button
-                    variant="ghost"
-                    className="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
-                  >
-                    Login
-                  </Button>
-                </SignInButton>
-
-                <SignInButton mode="modal" forceRedirectUrl="/dashboard">
-                  <Button className="px-5 py-2 text-base font-semibold leading-7 text-gray-900 transition-all duration-200 bg-transparent border border-gray-900 rounded-xl font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-gray-900 hover:text-white focus:bg-gray-900 focus:text-white">
-                    Create free account
-                  </Button>
-                </SignInButton>
-              </Unauthenticated>
-
-              <Authenticated>
-                <Link href="/dashboard">
-                  <Button className="px-5 py-2 text-base font-semibold leading-7 text-gray-900 transition-all duration-200 bg-transparent border border-gray-900 rounded-xl font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-gray-900 hover:text-white focus:bg-gray-900 focus:text-white">
-                    Dashboard
-                  </Button>
-                </Link>
-              </Authenticated>
-            </div>
-          </div>
-        </div>
-      </header>
-
+      {/* Hero Section */}
       <section className="relative py-12 sm:py-16 lg:pt-20 lg:pb-36">
         <div className="absolute bottom-0 right-0 overflow-hidden lg:inset-y-0">
           <img
@@ -228,6 +150,68 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Social Proof / Trust Builders */}
+      <section className="py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-semibold mb-4">
+              Powered by Industry Leaders
+            </h2>
+            <p className="text-muted-foreground">
+              Built with enterprise-grade technology and security you can trust
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-center opacity-60 hover:opacity-80 transition-opacity">
+            <div className="flex items-center justify-center">
+              <div className="flex items-center gap-2 text-lg font-semibold">
+                <Globe className="w-6 h-6" />
+                Bright Data
+              </div>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="flex items-center gap-2 text-lg font-semibold">
+                <Zap className="w-6 h-6" />
+                Vercel
+              </div>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="flex items-center gap-2 text-lg font-semibold">
+                <MessageSquare className="w-6 h-6" />
+                OpenAI
+              </div>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="flex items-center gap-2 text-lg font-semibold">
+                <Shield className="w-6 h-6" />
+                Clerk
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16 text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+              <Shield className="w-4 h-4 text-green-600" />
+              <span className="text-sm text-green-700 dark:text-green-300 font-medium">
+                Enterprise-grade security & 99.9% uptime guaranteed
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <PricingSection />
+
+      {/* Testimonials */}
+      <Testimonials />
+
+      {/* CTA Section */}
+      <CTASection />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
