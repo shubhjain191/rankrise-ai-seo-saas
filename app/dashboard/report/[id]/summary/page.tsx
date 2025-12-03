@@ -3,7 +3,7 @@
 import React from "react";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { AlertTriangle, Loader2, ArrowLeft } from "lucide-react";
+import { AlertTriangle, Loader2 } from "lucide-react";
 import { SeoReport } from "@/lib/seo-schema";
 import {
   SummaryHeader,
@@ -19,8 +19,7 @@ import {
 } from "./ui";
 import { Protect, useUser } from "@clerk/nextjs";
 import AIChat from "@/components/AIChat";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import Header from "@/components/Header";
 
 interface ReportSummaryProps {
   params: Promise<{ id: string }>;
@@ -78,18 +77,7 @@ export default function ReportSummary({ params }: ReportSummaryProps) {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-background via-background to-muted/20">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <Button
-          variant="ghost"
-          asChild
-          className="pl-0 hover:bg-transparent hover:text-primary"
-        >
-          <Link href="/dashboard">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Dashboard
-          </Link>
-        </Button>
-      </div>
+      <Header />
       <SummaryHeader seoReport={seoReport} />
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 space-y-8 lg:space-y-12">

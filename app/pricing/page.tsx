@@ -1,9 +1,12 @@
 import { PricingTable } from "@clerk/nextjs";
 import { Star } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 function PricingPage() {
   return (
     <div className="min-h-screen bg-linear-to-br from-background via-background to-muted/30">
+      <Header />
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 pt-20 pb-16">
         <div className="text-center mb-16">
@@ -28,6 +31,7 @@ function PricingPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -10,7 +10,7 @@ Built with a modern full-stack architecture, RankRise combines real-time data ac
 
 ### 🧠 Next-Gen SEO Intelligence
 -   **Generative Engine Optimization**: Analyze your presence on AI-powered search platforms to stay ahead of the curve.
--   **AI-Generated Reports**: Instantly generate detailed reports covering competitor analysis, keyword themes, backlink profiles, and sentiment analysis using OpenAI's GPT models.
+-   **AI-Generated Reports**: Instantly generate detailed reports covering competitor analysis, keyword themes, backlink profiles, and sentiment analysis using **Groq's Llama 3** models.
 -   **Actionable Insights**: Transform raw data into strategic recommendations for content and optimization.
 
 ### 🤖 Interactive AI Assistant
@@ -33,7 +33,7 @@ RankRise is built on a robust, modern stack designed for performance and scalabi
 -   **Frontend**: [Next.js 15](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/), [Tailwind CSS](https://tailwindcss.com/), [Shadcn UI](https://ui.shadcn.com/)
 -   **Backend & Database**: [Convex](https://www.convex.dev/) (Reactive backend-as-a-service)
 -   **Authentication & Payments**: [Clerk](https://clerk.com/)
--   **AI & LLMs**: [OpenAI](https://openai.com/) via [Vercel AI SDK](https://sdk.vercel.ai/docs)
+-   **AI & LLMs**: [Groq Cloud](https://groq.com/) (Llama 3.1 70B/8B) via [Vercel AI SDK](https://sdk.vercel.ai/docs)
 -   **Web Scraping**: [Bright Data](https://brightdata.com/)
 -   **Validation**: [Zod](https://zod.dev/)
 
@@ -69,8 +69,8 @@ Follow these steps to set up the project locally:
     # Convex Backend
     NEXT_PUBLIC_CONVEX_URL=https://...
     
-    # OpenAI (for AI analysis)
-    OPENAI_API_KEY=sk-...
+    # Groq Cloud (for AI analysis & chat)
+    GROQAI_API_KEY=gsk_...
 
     # Bright Data (for scraping)
     BRIGHT_DATA_API_KEY=...
