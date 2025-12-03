@@ -53,7 +53,7 @@ function Dashboard() {
             </p>
         </div>
 
-        <div className="space-y-24">
+        <div className="space-y-22">
           {/* Create Report Section */}
           <div className="relative rounded-2xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:rounded-2xl lg:p-4">
             <div className="rounded-xl bg-white shadow-2xl ring-1 ring-gray-900/10 overflow-hidden">

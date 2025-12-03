@@ -11,10 +11,18 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
-import { Loader2, FileText, Plus, TrendingUp, Trash2 } from "lucide-react";
+import {
+  Loader2,
+  FileText,
+  Plus,
+  TrendingUp,
+  Trash2,
+  ArrowRight,
+} from "lucide-react";
 import StatusBadge from "@/components/StatusBadge";
-import { formatDate, getSpinnerColor } from "@/lib/status-utils";
+import { formatDate } from "@/lib/status-utils";
 import { useState } from "react";
 import { Id } from "@/convex/_generated/dataModel";
 
@@ -54,89 +62,84 @@ export default function ReportsTable() {
 
   if (!jobs) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 text-center">
-        <div className="p-3 bg-muted/50 rounded-full mb-4">
-          <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
+      <Card className="flex flex-col items-center justify-center p-12 text-center border-dashed">
+        <div className="p-4 bg-primary/5 rounded-full mb-4 animate-pulse">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
         </div>
         <h3 className="text-lg font-semibold mb-2">Loading Reports</h3>
-        <p className="text-muted-foreground">
-          Fetching your latest analysis reports...
+        <p className="text-muted-foreground max-w-sm mx-auto">
+          Fetching your latest analysis reports. This should only take a moment...
         </p>
-      </div>
+      </Card>
     );
   }
 
   if (jobs.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 text-center">
-        <div className="p-4 bg-muted/50 rounded-full mb-6">
-          <FileText className="w-8 h-8 text-muted-foreground" />
+      <Card className="flex flex-col items-center justify-center p-16 text-center border-dashed hover:border-primary/50 transition-colors duration-300">
+        <div className="p-5 bg-primary/5 rounded-full mb-6 ring-1 ring-primary/10">
+          <FileText className="w-10 h-10 text-primary" />
         </div>
         <h3 className="text-xl font-semibold mb-2">No Reports Yet</h3>
-        <p className="text-muted-foreground mb-6 max-w-md">
+        <p className="text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
           Get started by creating your first SEO analysis report. Enter a
           business name, product, or website above to begin.
         </p>
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+        <Button 
+          variant="outline" 
+          className="gap-2 rounded-full px-6 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
           <Plus className="w-4 h-4" />
-          <span>Create your first report to see it here</span>
-        </div>
-      </div>
+          Create New Report
+        </Button>
+      </Card>
     );
   }
 
   return (
-    <div className="w-full">
-      <div className="rounded-lg border bg-card/50 backdrop-blur-sm">
+    <div className="w-full space-y-4">
+      <div className="rounded-xl border bg-card text-card-foreground shadow-sm overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="border-b border-border/50">
-              <TableHead className="font-semibold text-foreground">
-                Report
+            <TableRow className="bg-muted/30 hover:bg-muted/30 border-b border-border/60">
+              <TableHead className="w-[40%] pl-6 py-4 font-medium text-xs uppercase tracking-wider text-muted-foreground">
+                Report Details
               </TableHead>
-              <TableHead className="font-semibold text-foreground">
+              <TableHead className="font-medium text-xs uppercase tracking-wider text-muted-foreground">
                 Status
               </TableHead>
-              <TableHead className="font-semibold text-foreground">
+              <TableHead className="font-medium text-xs uppercase tracking-wider text-muted-foreground">
                 Created
               </TableHead>
-              <TableHead className="font-semibold text-foreground">
+              <TableHead className="font-medium text-xs uppercase tracking-wider text-muted-foreground">
                 Completed
               </TableHead>
-              <TableHead className="font-semibold text-foreground w-20">
-                Actions
-              </TableHead>
+              <TableHead className="w-[50px] pr-6"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {jobs.map((job) => (
               <TableRow
                 key={job._id}
-                className="cursor-pointer hover:bg-muted/30 transition-colors border-b border-border/30 last:border-b-0"
+                className="group cursor-pointer hover:bg-muted/40 transition-all duration-200 border-b border-border/40 last:border-b-0"
                 onClick={() => handleRowClick(job.snapshotId)}
               >
-                <TableCell className="font-medium py-4">
-                  <div className="flex items-center gap-3">
-                    <div className="p-1.5 bg-muted/50 rounded-md">
-                      <FileText className="w-4 h-4 text-muted-foreground" />
+                <TableCell className="pl-6 py-4">
+                  <div className="flex items-center gap-4">
+                    <div className="p-2.5 bg-primary/5 rounded-lg group-hover:bg-primary/10 transition-colors text-primary">
+                      <FileText className="w-5 h-5" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        {(job.status === "pending" ||
-                          job.status === "running" ||
-                          job.status === "analyzing") && (
-                          <Loader2
-                            className={`w-4 h-4 animate-spin ${getSpinnerColor(job.status)}`}
-                          />
-                        )}
-                        <span className="truncate font-medium text-foreground">
-                          {job.originalPrompt}
-                        </span>
+                      <div className="font-medium text-foreground truncate group-hover:text-primary transition-colors">
+                        {job.originalPrompt}
                       </div>
                       {job.snapshotId && (
-                        <p className="text-xs text-muted-foreground mt-1 font-mono">
-                          ID: {job.snapshotId.slice(0, 8)}...
-                        </p>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-[10px] font-mono text-muted-foreground/70 bg-muted/50 px-1.5 py-0.5 rounded border border-border/50">
+                            {job.snapshotId.slice(0, 8)}
+                          </span>
+                        </div>
                       )}
                     </div>
                   </div>
@@ -144,57 +147,73 @@ export default function ReportsTable() {
                 <TableCell className="py-4">
                   <StatusBadge status={job.status} showIcon={true} />
                 </TableCell>
-                <TableCell className="py-4 text-muted-foreground">
+                <TableCell className="py-4 text-sm text-muted-foreground font-medium">
                   {formatDate(job.createdAt)}
                 </TableCell>
-                <TableCell className="py-4 text-muted-foreground">
+                <TableCell className="py-4 text-sm text-muted-foreground font-medium">
                   {job.completedAt ? (
                     formatDate(job.completedAt)
                   ) : (
-                    <span className="text-muted-foreground/60">-</span>
+                    <span className="text-muted-foreground/40 text-xs">—</span>
                   )}
                 </TableCell>
-                <TableCell className="py-4">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={(e) => handleDelete(e, job._id)}
-                    disabled={deletingJobId === job._id}
-                    className="h-8 w-8 p-0 hover:bg-destructive/10 hover:text-destructive"
-                  >
-                    {deletingJobId === job._id ? (
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <Trash2 className="h-4 w-4" />
-                    )}
-                  </Button>
+                <TableCell className="pr-6 py-4">
+                  <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-full transition-colors"
+                      onClick={(e) => handleDelete(e, job._id)}
+                      disabled={deletingJobId === job._id}
+                    >
+                      {deletingJobId === job._id ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <Trash2 className="h-4 w-4" />
+                      )}
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full"
+                    >
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
-      </div>
 
-      {/* Summary Stats */}
-      <div className="mt-6 flex items-center justify-between text-sm text-muted-foreground">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <TrendingUp className="w-4 h-4" />
-            <span>
-              {jobs.length} total report{jobs.length !== 1 ? "s" : ""}
-            </span>
-          </div>
-          {jobs.filter((job) => job.status === "completed").length > 0 && (
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full" />
+        {/* Summary Footer */}
+        <div className="flex items-center justify-between px-6 py-4 bg-muted/20 border-t border-border/60">
+          <div className="flex items-center gap-6 text-sm">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <TrendingUp className="w-4 h-4" />
               <span>
-                {jobs.filter((job) => job.status === "completed").length}{" "}
-                completed
+                Total Reports:{" "}
+                <span className="font-semibold text-foreground">
+                  {jobs.length}
+                </span>
               </span>
             </div>
-          )}
+            {jobs.filter((job) => job.status === "completed").length > 0 && (
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <div className="w-2 h-2 bg-emerald-500 rounded-full shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+                <span>
+                  Completed:{" "}
+                  <span className="font-semibold text-foreground">
+                    {jobs.filter((job) => job.status === "completed").length}
+                  </span>
+                </span>
+              </div>
+            )}
+          </div>
+          <div className="text-[10px] font-medium text-muted-foreground/50 uppercase tracking-widest">
+            RankRise AI Analysis
+          </div>
         </div>
-        <div className="text-xs">Click any report to view details</div>
       </div>
     </div>
   );

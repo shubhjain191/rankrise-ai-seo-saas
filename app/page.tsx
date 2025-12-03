@@ -133,15 +133,12 @@ export default function Home() {
                       <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
                       <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
                     </div>
-                    <div className="aspect-16/10 bg-gray-50 flex items-center justify-center border-t border-gray-100">
-                      <div className="text-center p-8">
-                        <p className="text-sm font-medium text-gray-400">
-                          Dashboard Screenshot Placeholder
-                        </p>
-                        <p className="text-xs text-gray-300 mt-1">
-                          (Replace this div with your image)
-                        </p>
-                      </div>
+                    <div className="aspect-16/10 bg-gray-50 border-t border-gray-100 relative overflow-hidden">
+                      <img
+                        src="/dashboard-preview.png"
+                        alt="Dashboard Preview"
+                        className="w-full h-full object-cover object-top"
+                      />
                     </div>
                   </div>
                 </div>

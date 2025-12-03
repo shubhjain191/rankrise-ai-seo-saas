@@ -2,14 +2,14 @@
 
 import { internalAction, action } from "./_generated/server";
 import { v } from "convex/values";
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { createGroq } from "@ai-sdk/groq";
 import { generateObject } from "ai";
 import { buildAnalysisPrompt, systemPrompt } from "../prompts/gpt";
 import { seoReportSchema } from "../lib/seo-schema";
 import { internal, api } from "./_generated/api";
 
-const google = createGoogleGenerativeAI({
-  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+const groq = createGroq({
+  apiKey: process.env.GROQAI_API_KEY,
 });
 
 /**
@@ -66,7 +66,7 @@ export const runAnalysis = internalAction({
       console.log("Prompt saved for job:", args.jobId);
 
       const { object: seoReport } = await generateObject({
-        model: google("gemini-2.5-flash"),
+        model: groq("llama-3.1-8b-instant"),
         system: systemPrompt(),
         prompt: analysisPrompt,
         schema: seoReportSchema,
