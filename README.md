@@ -4,7 +4,14 @@ RankRise is a cutting-edge SEO analytics platform designed for the era of **Gene
 
 Built with a modern full-stack architecture, RankRise combines real-time data acquisition, AI-driven analysis, and a seamless user experience to empower marketers with actionable intelligence.
 
-![RankRise Dashboard](https://d33wubrfki0l68.cloudfront.net/1e0fc04f38f5896d10ff66824a62e46683956)
+<img width="1860" height="893" alt="image" src="https://github.com/user-attachments/assets/988bf3f1-2cc1-4d68-abaa-d824b9590641" />
+
+<img width="1791" height="903" alt="image" src="https://github.com/user-attachments/assets/3caeadc1-dd79-4086-a94d-ba4e3d2222c7" />
+
+<img width="1217" height="936" alt="image" src="https://github.com/user-attachments/assets/86ba405e-61b6-4d5b-ae0c-5e6f51b7ebd3" />
+
+<img width="1631" height="986" alt="image" src="https://github.com/user-attachments/assets/d664375d-4e0a-45e8-a168-10751bc95ac6" />
+
 
 ## 🌟 Key Features
 
